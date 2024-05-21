@@ -3,14 +3,14 @@ package com.infobip.pmf.course.mavencentral.storage;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user", schema = "maven_central")
+@Table(name = "users", schema = "maven_central")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "user_username")
+    @Column(name = "users_username")
     private String username;
-    @Column(nullable = false, name = "user_apikey")
+    @Column(nullable = false, name = "users_apikey")
     private String apiKey;
 
     public UserEntity() {}
