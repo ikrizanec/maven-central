@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VersionEntityRepository extends ListCrudRepository<VersionEntity, Long> {
     Page<VersionEntity> findByLibraryId(Long libraryId, Pageable pageable);
+    boolean existsBySemanticVersion(String semanticVersion);
 }

@@ -62,4 +62,37 @@ DELETE http://localhost:8080/libraries/1
 GET http://localhost:8080/libraries/2/versions
 
 ###
+POST http://localhost:8080/libraries/2/versions
+Content-Type: application/json
+//Authorization: App la9psd71atbpgeg7fvvx
 
+{
+  "semanticVersion": "5.4.11",
+  "description": "Spring Core Framework 5.3.10",
+  "deprecated": false
+}
+
+###
+
+GET http://localhost:8080/libraries/2/versions
+Content-Type: application/json
+//Authorization: App la9psd71atbpgeg7fvvx
+
+###
+
+PATCH http://localhost:8080/libraries/2/versions/1
+Content-Type: application/json
+//Authorization: App la9psd71atbpgeg7fvvx
+
+{
+  "description": "Spring Core Framework 5.5.1",
+  "deprecated": true
+}
+
+###
+
+GET http://localhost:8080/libraries/2/versions/1
+Content-Type: application/json
+//Authorization: App la9psd71atbpgeg7fvvx
+
+###
