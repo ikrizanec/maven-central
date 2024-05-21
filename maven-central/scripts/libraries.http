@@ -1,0 +1,65 @@
+GET http://localhost:8080/libraries
+//Authorization: App la9psd71atbpgeg7fvvx
+
+###
+
+GET http://localhost:8080/libraries?groupId=org.springframework
+//Authorization: App la9psd71atbpgeg7fvvx
+
+###
+
+GET http://localhost:8080/libraries?groupId=org.springframework&artifactId=spring-core
+//Authorization: App la9psd71atbpgeg7fvvx
+
+###
+
+GET http://localhost:8080/libraries?groupId=org.springframework&artifactId=spring-test
+//Authorization: App la9psd71atbpgeg7fvvx
+
+###
+
+GET http://localhost:8080/libraries?page=1&size=10
+//Authorization: App la9psd71atbpgeg7fvvx
+
+###
+
+GET http://localhost:8080/libraries/2
+
+###
+
+GET http://localhost:8080/libraries/6
+
+###
+
+POST http://localhost:8080/libraries
+Content-Type: application/json
+
+{
+  "groupId": "org.springframework",
+  "artifactId": "spring-test",
+  "name": "Spring Test",
+  "description": "Spring Test Framework"
+}
+
+###
+
+PATCH http://localhost:8080/libraries/2
+//Authorization: App la9psd71atbpgeg7fvvx
+Content-Type: application/json
+
+{
+  "name": "Spring Core Framework Update",
+  "description": "Spring Core Framework Update"
+}
+
+###
+
+DELETE http://localhost:8080/libraries/1
+//Autorization
+
+###
+
+GET http://localhost:8080/libraries/2/versions
+
+###
+
