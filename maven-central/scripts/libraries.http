@@ -1,38 +1,46 @@
 GET http://localhost:8080/libraries
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
+
+###
+
+GET http://localhost:8080/libraries
+Authorization: App nekikiriviApiKey
 
 ###
 
 GET http://localhost:8080/libraries?groupId=org.springframework
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 
 GET http://localhost:8080/libraries?groupId=org.springframework&artifactId=spring-core
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 
 GET http://localhost:8080/libraries?groupId=org.springframework&artifactId=spring-test
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 
 GET http://localhost:8080/libraries?page=1&size=10
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 
 GET http://localhost:8080/libraries/2
+Authorization: App ox9w79g2jwctzww2hcyb
 
 ###
 
 GET http://localhost:8080/libraries/6
+Authorization: App ox9w79g2jwctzww2hcyb
 
 ###
 
 POST http://localhost:8080/libraries
 Content-Type: application/json
+Authorization: App othyqhps18srg7fdj0p9
 
 {
   "groupId": "org.springframework",
@@ -44,27 +52,28 @@ Content-Type: application/json
 ###
 
 PATCH http://localhost:8080/libraries/2
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 Content-Type: application/json
 
 {
-  "name": "Spring Core Framework Update",
-  "description": "Spring Core Framework Update"
+  "name": "Spring Web Framework Update",
+  "description": "Spring Web Framework Update"
 }
 
 ###
 
 DELETE http://localhost:8080/libraries/1
-//Autorization
+Authorization: App othyqhps18srg7fdj0p9
 
 ###
 
 GET http://localhost:8080/libraries/2/versions
+Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 POST http://localhost:8080/libraries/2/versions
 Content-Type: application/json
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 {
   "semanticVersion": "5.4.11",
@@ -76,13 +85,13 @@ Content-Type: application/json
 
 GET http://localhost:8080/libraries/2/versions
 Content-Type: application/json
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 
 PATCH http://localhost:8080/libraries/2/versions/1
 Content-Type: application/json
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 {
   "description": "Spring Core Framework 5.5.1",
@@ -93,6 +102,6 @@ Content-Type: application/json
 
 GET http://localhost:8080/libraries/2/versions/1
 Content-Type: application/json
-//Authorization: App la9psd71atbpgeg7fvvx
+Authorization: App la9psd71atbpgeg7fvvx
 
 ###
