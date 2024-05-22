@@ -2,6 +2,7 @@ package com.infobip.pmf.course.mavencentral.storage;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -98,10 +99,14 @@ public class LibraryEntity {
     }
 
     public Library asLibrary() {
-        List<Version> versionList = versions
-                .stream()
-                .map(VersionEntity::asVersion)
-                .collect(Collectors.toList());
+        List<Version> versionList;
+        if (versions != null) {
+            versionList = versions.stream()
+                    .map(VersionEntity::asVersion)
+                    .collect(Collectors.toList());
+        } else {
+            versionList = new ArrayList<>();
+        }
         Library library = new Library(id, groupId, artifactId, versionList, name, description);
         return library;
     }

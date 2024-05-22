@@ -45,7 +45,7 @@ public class VersionService {
     @Transactional
     public Version createVersion(Long libraryId, Version version) {
         LibraryEntity libraryEntity = libraryEntityRepository.findById(libraryId)
-                .orElseThrow(LibraryDefinitionConflictException::new);
+                .orElseThrow(LibraryNotFoundException::new);
         VersionEntity versionEntity = VersionEntity.from(version);
         versionEntity.setLibrary(libraryEntity);
         return save(versionEntity).asVersion();
@@ -68,6 +68,7 @@ public class VersionService {
         if(versionEntity.isDeprecated()) throw new VersionDeprecatedException(libraryId, versionId);
         versionEntity.setDescription(versionText.description());
         versionEntity.setDeprecated(versionText.deprecated());
+        versionEntityRepository.save(versionEntity);
         return versionEntity.asVersion();
     }
 }

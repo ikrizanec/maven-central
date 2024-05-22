@@ -79,9 +79,10 @@ public class LibraryService {
 
     @Transactional
     public void deleteLibrary(Long id) {
-        if(!libraryEntityRepository.existsById(id)) {
+        if(libraryEntityRepository.findById(id).isPresent()) {
+            libraryEntityRepository.deleteById(id);
+        } else {
             throw new LibraryNotFoundException(id);
         }
-        libraryEntityRepository.deleteById(id);
     }
 }
