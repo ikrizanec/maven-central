@@ -31,7 +31,7 @@ public class ApiKeyAuth extends HttpFilter {
         }
 
         String key = apiKey.substring(API_KEY_PREFIX.length());
-        if (userService.findByApiKey(key).isEmpty()) {
+        if (userService.existsByApiKey(key)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Unauthorized: Invalid API key.");
             return;

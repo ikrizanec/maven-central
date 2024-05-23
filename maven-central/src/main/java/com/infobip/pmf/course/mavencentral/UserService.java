@@ -1,10 +1,8 @@
 package com.infobip.pmf.course.mavencentral;
 
-import com.infobip.pmf.course.mavencentral.storage.UserEntity;
 import com.infobip.pmf.course.mavencentral.storage.UserEntityRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -14,7 +12,7 @@ public class UserService {
         this.userEntityRepository = userEntityRepository;
     }
 
-    public Optional<UserEntity> findByApiKey(String apiKey) {
-        return userEntityRepository.findByApiKey(apiKey);
+    public boolean existsByApiKey(String apiKey) {
+        return userEntityRepository.existsByApiKey(apiKey);
     }
 }
