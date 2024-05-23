@@ -1,0 +1,45 @@
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_DATABASE_ROOT_PASSWORD}
+      MARIADB_DATABASE: maven_central
+    volumes:
+      - ./mariadb:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    healthcheck:
+      interval: 30s
+      retries: 3
+      test:
+        [
+          "CMD",
+          "healthcheck.sh",
+          "--su-mysql",
+          "--connect",
+          "--innodb_initialized"
+        ]
+      timeout: 30s
+
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/maven_central
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    networks:
+#      - app-network
+
+volumes:
+  db_data:
+
+#networks:
+#  app-network:
+#    driver: bridge
