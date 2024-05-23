@@ -16,5 +16,5 @@ public interface LibraryEntityRepository extends ListCrudRepository<LibraryEntit
     Page<LibraryEntity> findAllByGroupId(String groupId, Pageable pageable);
     Page<LibraryEntity> findAllByArtifactId(String artifactId, Pageable pageable);
     Page<LibraryEntity> findAllByGroupIdAndArtifactId(String groupId, String artifactId, Pageable pageable);
-    boolean existsLibraryEntityByArtifactIdAndGroupId(String groupId, String artifactId);
+    boolean existsByGroupIdAndArtifactId(String groupId, String artifactId);
 }

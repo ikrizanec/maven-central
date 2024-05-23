@@ -6,6 +6,7 @@ import com.infobip.pmf.course.mavencentral.LibraryText;
 import com.infobip.pmf.course.mavencentral.exception.LibraryDefinitionConflictException;
 import com.infobip.pmf.course.mavencentral.exception.LibraryInvalidUpdateException;
 import com.infobip.pmf.course.mavencentral.exception.LibraryNotFoundException;
+import com.infobip.pmf.course.mavencentral.exception.LibraryUniqueAttributesException;
 import com.infobip.pmf.course.mavencentral.storage.LibraryEntity;
 import com.infobip.pmf.course.mavencentral.storage.LibraryEntityRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -86,7 +87,7 @@ public class LibraryServiceTest {
         LibraryEntity libraryEntity = new LibraryEntity();
         libraryEntity.setGroupId("org.test");
         libraryEntity.setArtifactId("test-artifact");
-        when(libraryEntityRepository.existsLibraryEntityByArtifactIdAndGroupId("org.test", "test-artifact")).thenReturn(false);
+        when(libraryEntityRepository.existsByGroupIdAndArtifactId("org.test", "test-artifact")).thenReturn(false);
         when(libraryEntityRepository.save(any(LibraryEntity.class))).thenReturn(libraryEntity);
 
         // act
@@ -96,7 +97,7 @@ public class LibraryServiceTest {
         assertNotNull(createdLibrary);
         assertEquals("test-artifact", createdLibrary.getArtifactId());
         assertEquals("org.test", createdLibrary.getGroupId());
-        verify(libraryEntityRepository, times(1)).existsLibraryEntityByArtifactIdAndGroupId("org.test", "test-artifact");
+        verify(libraryEntityRepository, times(1)).existsByGroupIdAndArtifactId("org.test", "test-artifact");
         verify(libraryEntityRepository, times(1)).save(any(LibraryEntity.class));
     }
 
@@ -108,10 +109,10 @@ public class LibraryServiceTest {
         libraryEntity.setArtifactId("test-artifact");
 
         // act
-        when(libraryEntityRepository.existsLibraryEntityByArtifactIdAndGroupId(any(), any())).thenReturn(true);
+        when(libraryEntityRepository.existsByGroupIdAndArtifactId(any(), any())).thenReturn(true);
 
         // assert
-        assertThrows(LibraryDefinitionConflictException.class, () -> libraryService.createLibrary(libraryEntity.asLibrary()));
+        assertThrows(LibraryUniqueAttributesException.class, () -> libraryService.createLibrary(libraryEntity.asLibrary()));
     }
 
     @Test

@@ -4,6 +4,8 @@ import com.infobip.pmf.course.mavencentral.Library;
 import com.infobip.pmf.course.mavencentral.LibraryService;
 import com.infobip.pmf.course.mavencentral.LibraryText;
 
+import com.infobip.pmf.course.mavencentral.UserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -35,12 +37,12 @@ public class LibraryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Library createLibrary(@RequestBody Library library) {
+    public Library createLibrary(@RequestBody @Valid Library library) {
         return libraryService.createLibrary(library);
     }
 
     @PatchMapping("/{id}")
-    public Library updateLibrary(@PathVariable Long id, @RequestBody LibraryText libraryText) {
+    public Library updateLibrary(@PathVariable Long id, @RequestBody @Valid LibraryText libraryText) {
         return libraryService.updateNameAndDescription(id, libraryText);
     }
 

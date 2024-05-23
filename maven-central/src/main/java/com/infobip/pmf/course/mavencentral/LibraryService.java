@@ -47,19 +47,16 @@ public class LibraryService {
 
     @Transactional
     public Library createLibrary(Library library) {
-        if(library.id() != null){
-            throw new LibraryDefinitionConflictException();
+        if (libraryEntityRepository.existsByGroupIdAndArtifactId(library.groupId(), library.artifactId())) {
+            throw new LibraryUniqueAttributesException(library.groupId(), library.artifactId());
         }
-        return save(LibraryEntity.from(library)).asLibrary();
+        return libraryEntityRepository.save(LibraryEntity.from(library)).asLibrary();
     }
-
     @Transactional
     public LibraryEntity save(LibraryEntity libraryEntity) {
-        if(libraryEntityRepository.existsLibraryEntityByArtifactIdAndGroupId(libraryEntity.getGroupId(), libraryEntity.getArtifactId())){
-            throw new LibraryDefinitionConflictException(libraryEntity.getArtifactId(), libraryEntity.getGroupId());
-        }
         return libraryEntityRepository.save(libraryEntity);
     }
+
 
     @Transactional
     public Library updateNameAndDescription(Long id, LibraryText libraryText){

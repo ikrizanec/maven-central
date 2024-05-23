@@ -6,11 +6,11 @@ import jakarta.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 public record Version(
-        @NotNull Long id,
+        Long id,
         @NotNull @Pattern(regexp = Version.SEMANTIC_VERSION_REGEX) String semanticVersion,
         String description,
         @NotNull Boolean deprecated,
-        @NotNull @Pattern(regexp = Version.DATE_TIME_REGEX) LocalDateTime releaseDate
+        LocalDateTime releaseDate
 ) {
     public Version {
         if(deprecated == null) {
@@ -18,6 +18,5 @@ public record Version(
         }
     }
     public static final String SEMANTIC_VERSION_REGEX = "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$";
-    public static final String DATE_TIME_REGEX = "";
 
 }

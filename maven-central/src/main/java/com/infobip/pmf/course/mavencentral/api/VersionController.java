@@ -3,7 +3,7 @@ package com.infobip.pmf.course.mavencentral.api;
 import com.infobip.pmf.course.mavencentral.Version;
 import com.infobip.pmf.course.mavencentral.VersionService;
 import com.infobip.pmf.course.mavencentral.VersionText;
-import com.infobip.pmf.course.mavencentral.storage.VersionEntity;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -33,14 +33,14 @@ public class VersionController {
 
     @PostMapping("/{libraryId}/versions")
     @ResponseStatus(HttpStatus.CREATED)
-    public Version createVersion(@PathVariable Long libraryId, @RequestBody Version version) {
+    public Version createVersion(@PathVariable Long libraryId, @RequestBody @Valid Version version) {
         return versionService.createVersion(libraryId, version);
     }
 
     @PatchMapping("/{libraryId}/versions/{versionId}")
     public Version updateVersion(@PathVariable Long libraryId,
                                  @PathVariable Long versionId,
-                                 @RequestBody VersionText versionText) {
+                                 @RequestBody @Valid VersionText versionText) {
         return versionService.updateVersion(libraryId, versionId, versionText);
     }
 

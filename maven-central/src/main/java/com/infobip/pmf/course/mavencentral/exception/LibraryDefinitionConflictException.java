@@ -6,9 +6,9 @@ public class LibraryDefinitionConflictException extends RuntimeException{
     public LibraryDefinitionConflictException(){
     }
 
-    public LibraryDefinitionConflictException(String groupId, String artifactId){
+    public LibraryDefinitionConflictException(String libraryId){
         super();
-        this.message = "Library with given '%s' groupId and '%s' artifactId already exists.".formatted(groupId, artifactId);
+        this.message = "Library with given '%s' id  already exists.".formatted(libraryId);
     }
 
     public String getMessage(){

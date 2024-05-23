@@ -10,20 +10,20 @@ public class VersionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, name = "version_semanticVersion")
+    @Column(nullable = false)
     private String semanticVersion;
 
-    @Column(nullable = false, name = "version_description")
+    @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false, name = "version_deprecated")
+    @Column(nullable = false)
     private Boolean deprecated;
 
-    @Column(nullable = false, name = "version_releaseDate")
+    @Column(nullable = false)
     private LocalDateTime releaseDate;
 
     @ManyToOne
-    @JoinColumn(name = "library_id", nullable = false)
+    @JoinColumn(nullable = false)
     private LibraryEntity library;
 
     @PrePersist

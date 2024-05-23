@@ -28,7 +28,7 @@ Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 
-GET http://localhost:8080/libraries/2
+GET http://localhost:8080/libraries/1
 Authorization: App ox9w79g2jwctzww2hcyb
 
 ###
@@ -71,36 +71,36 @@ GET http://localhost:8080/libraries/2/versions
 Authorization: App la9psd71atbpgeg7fvvx
 
 ###
-POST http://localhost:8080/libraries/2/versions
+POST http://localhost:8080/libraries/1/versions
 Content-Type: application/json
 Authorization: App la9psd71atbpgeg7fvvx
 
 {
-  "semanticVersion": "5.4.11",
-  "description": "Spring Core Framework 5.3.10",
+  "semanticVersion": "6.0.0",
+  "description": "Spring Test Framework Upgrade",
   "deprecated": false
 }
 
 ###
 
-GET http://localhost:8080/libraries/2/versions
+GET http://localhost:8080/libraries/1/versions
 Content-Type: application/json
 Authorization: App la9psd71atbpgeg7fvvx
 
 ###
 
-PATCH http://localhost:8080/libraries/2/versions/1
+PATCH http://localhost:8080/libraries/1/versions/1
 Content-Type: application/json
 Authorization: App la9psd71atbpgeg7fvvx
 
 {
-  "description": "Spring Core Framework 5.5.1",
+  "description": "Spring Test Framework 5.5.1",
   "deprecated": true
 }
 
 ###
 
-GET http://localhost:8080/libraries/2/versions/1
+GET http://localhost:8080/libraries/1/versions/1
 Content-Type: application/json
 Authorization: App la9psd71atbpgeg7fvvx
 

@@ -11,25 +11,26 @@ import com.infobip.pmf.course.mavencentral.Library;
 import com.infobip.pmf.course.mavencentral.Version;
 
 @Entity
-@Table(name = "library", schema = "maven_central")
+@Table(name = "library", schema = "maven_central",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"groupId", "artifactId"})})
 public class LibraryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "library_groupId")
+    @Column(nullable = false)
     private String groupId;
 
-    @Column(nullable = false, name = "library_artifactId")
+    @Column(nullable = false)
     private String artifactId;
 
-    @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "library", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VersionEntity> versions;
 
-    @Column(nullable = false, name = "library_name")
+    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, name = "library_description")
+    @Column(nullable = false)
     private String description;
 
     public static LibraryEntity from (Library library) {

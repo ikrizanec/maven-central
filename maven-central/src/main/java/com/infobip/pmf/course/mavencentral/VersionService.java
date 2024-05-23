@@ -46,6 +46,9 @@ public class VersionService {
     public Version createVersion(Long libraryId, Version version) {
         LibraryEntity libraryEntity = libraryEntityRepository.findById(libraryId)
                 .orElseThrow(LibraryNotFoundException::new);
+        if(versionEntityRepository.existsBySemanticVersion(version.semanticVersion())){
+            throw new VersionDefinitionConflictException(version.semanticVersion());
+        }
         VersionEntity versionEntity = VersionEntity.from(version);
         versionEntity.setLibrary(libraryEntity);
         return save(versionEntity).asVersion();
